@@ -8,7 +8,7 @@ export const siteConfig = {
     { value: "v38", label: "同一款产品的持续线上迭代" },
     { value: "88,282", label: "人格复刻项目处理的真实聊天消息" },
     { value: "21,356", label: "拆解出的“上文 → 回复”语料" },
-    { value: "31", label: "蒸馏一个角色时梳理的来源" },
+    { value: "577", label: "为复刻一个角色逐句标注的原作台词" },
     { value: "2,588", label: "小红书单条图文最高浏览" },
   ],
   manifesto:
@@ -79,49 +79,49 @@ export const siteConfig = {
     },
     {
       name: "wechat-mac-auto-export",
-      tagline: "主流工具失效时，我换了一条路",
-      claim: "不猜内存特征，直接在系统函数层拿到密钥。",
-      challenge: "常见工具靠扫描内存特征取密钥，微信小版本一更新就可能失效。",
+      tagline: "让微信聊天记录自己定时导出",
+      claim: "设好后不用管，微信聊天记录会定时变成能分析的数据。",
+      challenge: "常见工具靠扫描内存特征取密钥，微信小版本一更新就可能失效；无人值守时还不能乱点登录。",
+      result: "在自己的 Mac 上到点自动完成：重启微信、拿密钥、解密、导出 JSONL，全程本地、不联网。遇到真正的登录界面就立刻中止并丢弃本次数据，绝不自动登录。人格复刻用的就是这条思路取得的语料。",
       bullets: [
         "用 Frida Hook 系统的 CCKeyDerivationPBKDF，在密钥派生时直接拿到结果",
-        "打通解密、导出 JSONL 和 launchd 定时任务，做到无人值守",
-        "加入登录界面安全阀，并把原理和踩坑过程写成公开教程",
+        "用 launchd 串起整条流程，并区分登录界面、账号确认屏和主界面",
+        "把原理和踩坑过程写成公开教程，别人也能照着跑通",
       ],
-      metrics: ["系统 API 层方案", "无人值守", "公开仓库"],
+      metrics: ["全自动定时导出", "全程本地不联网", "公开仓库"],
       tags: ["Python", "Frida", "SQLCipher", "launchd"],
       links: [{ label: "GitHub", url: "https://github.com/fanrongrongrong/wechat-mac-auto-export" }],
     },
     {
       name: "高保真角色蒸馏",
-      tagline: "用证据写角色，而不是凭感觉",
-      claim: "从原作字幕里统计出 wiki 都没写的说话习惯。",
+      tagline: "用原作台词和评分写角色，而不是凭感觉",
+      claim: "逐句扒原作台词，统计出 wiki 都没写的说话习惯。",
       challenge: "大模型扮演角色容易事实出错，越聊越温柔，也越聊越不像。",
       bullets: [
-        "蒸馏 31 个来源和原作字幕，提炼出 7 个核心行为模式",
-        "建立“纠错记录 > 字幕统计 > 其他资料”的证据优先级",
-        "设计反讨好、防长对话漂移和防口癖复读规则",
-        "用懂原作的人的问卷校准，形成持续变像的闭环",
+        "人工逐句标注 10 集关键剧集的 577 句台词，再从 64 集电视字幕中提取 126 句明确标注的台词（约 2,200 字）",
+        "以另外 3 个角色的 344 句字幕台词作对照，量化句尾、感叹号和称呼差异",
+        "蒸馏 31 个来源，提炼 7 个核心行为模式，建立“纠错记录 > 字幕统计 > 其他资料”的优先级",
+        "用独立 agent 答题和评分，最高 86/100，原作一致性 30/30；原作留出盲测还能被认出，继续迭代",
       ],
-      metrics: ["31 个来源", "7 个行为模式", "持续校准闭环"],
-      tags: ["语料统计", "角色设计", "Prompt 工程"],
+      metrics: ["577 句逐句标注", "126 句字幕统计", "最高 86/100"],
+      tags: ["语料统计", "角色设计", "评测设计"],
       note: "非公开项目",
     },
     {
-      name: "oc-guard",
-      tagline: "给原创者的盲水印防盗工具",
-      claim: "图片被压缩、缩放、截图后，水印依然能追溯来源。",
-      challenge: "原创图被转发和压缩后，普通水印要么碍眼，要么很快失效。",
+      name: "《19 岁的兰》",
+      tagline: "自研引擎的同人 galgame",
+      claim: "写好的剧情里，能随时和 AI 角色自由聊天。",
+      challenge: "现成引擎不支持中途接入 AI 聊天；初版又僵硬、没有代入感，要先找到原因。",
+      result: "已做出可玩的序章和前两章，一个人完成引擎、剧本、美术流水线和发布。这是给朋友做的非商业同人作品，不公开分发。",
       bullets: [
-        "实现盲水印和以图搜图巡查，覆盖从加印到发现盗图的流程",
-        "可为每次外发生成独立编号，泄露后能查到是哪一份",
-        "README 记录的实测：能承受 JPEG q50、缩放、调亮度、裁边和截图后缩小",
+        "自研单文件引擎（约 835 行）和剧本编译器（约 224 行），支持分支变量、存读档、转场和立绘演出",
+        "统计 3 部真实 galgame 的旁白和台词，定位僵硬的主因是第二人称叙事和台词过短，并把剧本重写为第一人称",
+        "立绘只替换脸部差异，合成眨眼和张嘴动画，换表情时不变脸",
+        "把角色 skill 编译进游戏，让剧情和自由聊天共用一套人设",
       ],
-      metrics: ["盲水印", "来源追溯", "网页版 + Python 版"],
-      tags: ["图像处理", "Python", "Web"],
-      links: [
-        { label: "在线使用", url: "https://fanrongrongrong.github.io/oc-guard/" },
-        { label: "GitHub", url: "https://github.com/fanrongrongrong/oc-guard" },
-      ],
+      metrics: ["自研引擎", "约 3.9 万字剧本", "AI 自由聊天"],
+      tags: ["JavaScript", "Python", "AIGC 美术", "Claude"],
+      note: "朋友私享版，可当面演示",
     },
   ] as Project[],
 };
@@ -131,6 +131,7 @@ type Project = {
   tagline: string;
   claim: string;
   challenge: string;
+  result?: string;
   bullets: string[];
   metrics: string[];
   tags: string[];

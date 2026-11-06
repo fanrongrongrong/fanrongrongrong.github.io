@@ -30,6 +30,12 @@ import { siteConfig } from "../config";
             <p class="claim">{p.claim}</p>
             <h4>难点</h4>
             <p class="challenge">{p.challenge}</p>
+            {p.result && (
+              <>
+                <h4>做成后的结果</h4>
+                <p class="challenge">{p.result}</p>
+              </>
+            )}
             <h4>我怎么解决</h4>
             <ul class="points">{p.bullets.map((b) => <li>{b}</li>)}</ul>
             <ul class="tags">{p.tags.map((t) => <li>{t}</li>)}</ul>
