@@ -1,0 +1,13 @@
+---
+import { siteConfig } from "../config";
+---
+
+<footer class="footer">
+  <div class="wrap">
+    <h2>有硬问题？<br />来试试我。</h2>
+    <div class="cta">
+      <a class="btn primary" href={siteConfig.github} target="_blank" rel="noopener noreferrer">去 GitHub 找我 ↗</a>
+    </div>
+    <p>© {new Date().getFullYear()} {siteConfig.name}</p>
+  </div>
+</footer>

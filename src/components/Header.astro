@@ -1,0 +1,39 @@
+---
+import { siteConfig } from "../config";
+---
+
+<nav class="nav" aria-label="主导航">
+  <a href="#top" data-spy="top">首页</a>
+  <a href="#about" data-spy="about">实力</a>
+  <a href="#projects" data-spy="projects">代表作</a>
+  <a href={siteConfig.github} target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+</nav>
+
+<script>
+  const links = document.querySelectorAll<HTMLAnchorElement>("[data-spy]");
+  const spy = new IntersectionObserver(
+    (entries) => {
+      for (const e of entries) {
+        if (!e.isIntersecting) continue;
+        links.forEach((a) => a.classList.toggle("on", a.dataset.spy === e.target.id));
+      }
+    },
+    { rootMargin: "-45% 0px -50% 0px" },
+  );
+  links.forEach((a) => {
+    const target = document.getElementById(a.dataset.spy!);
+    if (target) spy.observe(target);
+  });
+
+  const reveal = new IntersectionObserver(
+    (entries) => {
+      for (const e of entries) {
+        if (!e.isIntersecting) continue;
+        e.target.classList.add("in");
+        reveal.unobserve(e.target);
+      }
+    },
+    { rootMargin: "0px 0px -8% 0px" },
+  );
+  document.querySelectorAll(".reveal").forEach((el) => reveal.observe(el));
+</script>

@@ -1,0 +1,41 @@
+---
+import { siteConfig } from "../config";
+---
+
+<section id="projects" class="section wrap">
+  <div class="section-head reveal">
+    <h2>代表作</h2>
+    <p>不讲概念，只讲做成了什么。</p>
+  </div>
+
+  <div class="cases">
+    {
+      siteConfig.projects.map((p, i) => (
+        <article class="case reveal">
+          <div class="case-side">
+            <span class="card-index">{String(i + 1).padStart(2, "0")}</span>
+            <h3>{p.name}</h3>
+            <p class="tagline">{p.tagline}</p>
+            <ul class="metrics">{p.metrics.map((m) => <li>{m}</li>)}</ul>
+            <div class="cta">
+              {p.links?.map((l, n) => (
+                <a class={`btn ${n === 0 ? "primary" : ""}`} href={l.url} target="_blank" rel="noopener noreferrer">
+                  {l.label} ↗
+                </a>
+              ))}
+              {p.note && <span class="note">{p.note}</span>}
+            </div>
+          </div>
+          <div class="case-main">
+            <p class="claim">{p.claim}</p>
+            <h4>难点</h4>
+            <p class="challenge">{p.challenge}</p>
+            <h4>我怎么解决</h4>
+            <ul class="points">{p.bullets.map((b) => <li>{b}</li>)}</ul>
+            <ul class="tags">{p.tags.map((t) => <li>{t}</li>)}</ul>
+          </div>
+        </article>
+      ))
+    }
+  </div>
+</section>

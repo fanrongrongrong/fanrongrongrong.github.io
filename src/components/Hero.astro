@@ -1,0 +1,34 @@
+---
+import { siteConfig } from "../config";
+---
+
+<section id="top" class="hero">
+  <div class="wrap">
+    <p class="kicker">{siteConfig.name} / {siteConfig.title}</p>
+    <h1>17 岁，还在上高中，<br />产品已经卖出<em>约 425 单</em>。</h1>
+    <p class="lead">一个人做产品、写代码、搞增长，也死磕 AI 的记忆、角色和人格复刻。</p>
+    <div class="cta">
+      <a class="btn primary" href="#projects">看代表作 ↓</a>
+      <a class="btn" href={siteConfig.github} target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+    </div>
+    <dl class="stats">
+      {
+        siteConfig.highlights.map((h) => (
+          <div>
+            <dt><b>{h.value}</b></dt>
+            <dd><span>{h.label}</span></dd>
+          </div>
+        ))
+      }
+    </dl>
+  </div>
+</section>
+
+<script>
+  const hero = document.getElementById("top")!;
+  hero.addEventListener("pointermove", (e) => {
+    const r = hero.getBoundingClientRect();
+    hero.style.setProperty("--x", `${e.clientX - r.left}px`);
+    hero.style.setProperty("--y", `${e.clientY - r.top}px`);
+  });
+</script>

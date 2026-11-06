@@ -1,0 +1,18 @@
+---
+import { siteConfig } from "../config";
+---
+
+<section id="about" class="section wrap reveal">
+  <div class="section-head"><h2>我的实力</h2></div>
+  <p class="about-text">{siteConfig.manifesto}</p>
+  <ul class="skills">
+    {
+      siteConfig.skills.map((s) => (
+        <li>
+          <h3>{s.name}</h3>
+          <p>{s.detail}</p>
+        </li>
+      ))
+    }
+  </ul>
+</section>
